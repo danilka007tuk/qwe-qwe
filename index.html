@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
     <title>Хочу ресницы</title>
-    <meta name="description" content="Салон красоты Хочу ресницы предлагает услуги по уходу за красотой. Запишитесь на стрижки, маникюр, окрашивание и многое другое.">
+    <meta name="description" content="Салон красоты &#39;Хочу ресницы&#39; предлагает широкий спектр услуг по уходу за волосами и ногтями.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -24,7 +24,7 @@
         .main-content { margin-left: 0; min-height: 100vh; } .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
         .hero { position: relative; background: linear-gradient(180deg, var(--primary), var(--secondary)); color: #fff; padding: 100px 32px 80px; text-align: center; overflow: hidden; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
         .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2), transparent 70%); }
-         .hero { background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35)), url('images/d62a90fd4e3f4663963eb5d1974a2dd8.png'); background-size: cover; background-position: center; } 
+         .hero { background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35)), url('images/600dcd82436746ebbb594401ca86412b.png'); background-size: cover; background-position: center; } 
         .hero-inner { position: relative; max-width: 800px; margin: 0 auto; width: 100%; }
         .hero h1 { position: relative; font-size: 3em; margin: 0 0 16px; line-height: 1.1; text-shadow: 0 4px 30px rgba(0,0,0,0.4); } .hero p { position: relative; font-family: 'Inter', sans-serif; font-size: 1.15em; font-weight: 300; opacity: 0.95; max-width: 600px; margin: 0 auto 24px; text-shadow: 0 2px 15px rgba(0,0,0,0.3); }
         .hero-about { position: relative; max-width: 600px; margin: 0 auto 32px; font-family: 'Inter', sans-serif; font-size: 0.95em; opacity: 0.9; line-height: 1.8; }
@@ -61,29 +61,17 @@
     (async function() {
         const urlParams = new URLSearchParams(window.location.search);
         const verified = urlParams.get('verified');
-
-        if (verified) {
-            window.history.replaceState({}, '', 'index.html');
-            setTimeout(() => { openModal('booking'); }, 500);
-            return;
-        }
-
-        // ИСПОЛЬЗУЕМ sessionStorage (сбрасывается при закрытии браузера)
+        if (verified) { window.history.replaceState({}, '', 'index.html'); setTimeout(() => { openModal('booking'); }, 500); return; }
         const email = sessionStorage.getItem('user_email');
         const siteId = "qwe-qwe";
         const serverUrl = "https://api.generator-beloretsk.ru";
-
         if (email) {
             try {
                 const res = await fetch(`${serverUrl}/api/check-email/${siteId}?email=${encodeURIComponent(email)}`);
                 const data = await res.json();
-                if (data.exists && data.is_verified) {
-                    return; // Пускаем
-                }
+                if (data.exists && data.is_verified) return;
             } catch (e) {}
         }
-
-        // Если нет или не подтвержден — на регистрацию
         window.location.replace('register.html');
     })();
 </script>
@@ -95,69 +83,54 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">Хочу ресницы</div>
     
-    <nav class="sidebar-nav" id="sidebarNav">
-        
-        <a href="javascript:void(0)" onclick="openModal('services')">💼 Услуги</a>
-        
-        <a href="javascript:void(0)" onclick="openModal('team')">👥 Команда</a>
-        
-        <a href="javascript:void(0)" onclick="openModal('testimonials')">⭐ Отзывы</a>
-        
-        <a href="javascript:void(0)" onclick="openModal('faq')">❓ Часто задаваемые вопросы</a>
-        
-        <a href="javascript:void(0)" onclick="openModal('contacts')">📍 Контакты</a>
-        
-    </nav>
+    <nav class="sidebar-nav" id="sidebarNav"><a href="javascript:void(0)" onclick="openModal('services')">💼 Услуги</a><a href="javascript:void(0)" onclick="openModal('team')">👩‍🎨 Наши мастера</a><a href="javascript:void(0)" onclick="openModal('testimonials')">⭐ Отзывы</a><a href="javascript:void(0)" onclick="openModal('faq')">❓ Частые вопросы</a><a href="javascript:void(0)" onclick="openModal('contacts')">📞 Контакты</a></nav>
     
     <button class="sidebar-cta" onclick="openModal('booking')">Записаться</button>
-    <div class="sidebar-contacts">
-        <div>📞 +7 996 101-56-01</div>
-        <div>📍 Белорецк, ул. Канатная 49</div>
-        <div>🕐 10:00-20:00</div>
-    </div>
+    <div class="sidebar-contacts"><div>📞 +7 996 101-56-01</div><div>📍 Белорецк, ул. Канатная 49</div><div>🕐 10:00-20:00</div></div>
 </aside>
 
 
 <main class="main-content">
 <section class="hero" id="section-hero">
     <div class="hero-inner">
-        <h1>Добро пожаловать в Хочу ресницы!</h1>
-        <p>Ваш идеальный салон красоты в Белорецке.</p>
-        <div class="hero-about">Салон красоты Хочу ресницы предлагает широкий спектр услуг для вашего ухода и красоты.</div>
-        <div class="hero-contacts">
-            <div>📞 +7 996 101-56-01</div>
-            <div>📍 Белорецк, ул. Канатная 49</div>
-            <div>🕐 10:00-20:00</div>
-        </div>
-        <div class="hero-buttons">
-            <button class="hero-btn" onclick="openModal('booking')">Записаться</button>
-            <button class="hero-btn secondary" onclick="openModal('services')">Услуги</button>
-        </div>
+        <h1>Добро пожаловать в &#39;Хочу ресницы&#39;</h1>
+        <p>Идеальные ресницы и не только!</p>
+        <div class="hero-about">Салон &#39;Хочу ресницы&#39; предлагает широкий спектр услуг для ухода за вашим образом.</div>
+        <div class="hero-contacts"><div>📞 +7 996 101-56-01</div><div>📍 Белорецк, ул. Канатная 49</div><div>🕐 10:00-20:00</div></div>
+        <div class="hero-buttons"><button class="hero-btn" onclick="openModal('booking')">Записаться</button><button class="hero-btn secondary" onclick="openModal('services')">Услуги</button></div>
     </div>
 </section>
 </main>
 
-<footer>Хочу ресницы - ваш салон красоты в Белорецке.</footer>
+<footer>Салон красоты &#39;Хочу ресницы&#39; — ваш идеальный выбор для ухода за собой.</footer>
 
 
-<div class="modal" id="modal-features" onclick="modalOutsideClick(event, 'features')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Преимущества</h2><button class="modal-close" onclick="closeModal('features')">×</button></div><div class="features-grid"><div class="feature"><h3>Профессиональные мастера</h3><p>В нашей команде работают только опытные специалисты.</p></div><div class="feature"><h3>Широкий выбор услуг</h3><p>Мы предлагаем все виды услуг по уходу за собой.</p></div><div class="feature"><h3>Комфортная атмосфера</h3><p>Наш салон создан для вашего комфорта и расслабления.</p></div></div></div></div>
+<div class="modal" id="modal-features" onclick="modalOutsideClick(event, 'features')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Преимущества</h2><button class="modal-close" onclick="closeModal('features')">×</button></div><div class="features-grid"><div class="feature"><h3>Профессиональные мастера</h3><p>В нашей команде работают только опытные специалисты.</p></div><div class="feature"><h3>Широкий спектр услуг</h3><p>Мы предлагаем услуги по уходу за волосами и ногтями.</p></div><div class="feature"><h3>Современные технологии</h3><p>Используем только качественные и безопасные материалы.</p></div></div></div></div>
 
 
-<div class="modal" id="modal-about" onclick="modalOutsideClick(event, 'about')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>О нас</h2><button class="modal-close" onclick="closeModal('about')">×</button></div><div class="about"><p>Салон красоты Хочу ресницы — это место, где вы можете побаловать себя и получить услуги высочайшего качества. Мы предлагаем стрижки, укладки, маникюр, педикюр, окрашивание волос, а также уходовые процедуры и массаж. Наша команда профессионалов всегда готова помочь вам стать еще красивее и увереннее в себе.</p></div></div></div>
+<div class="modal" id="modal-about" onclick="modalOutsideClick(event, 'about')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>О нас</h2><button class="modal-close" onclick="closeModal('about')">×</button></div><div class="about"><p>В нашем салоне красоты &#39;Хочу ресницы&#39; мы уделяем внимание каждому клиенту. Наша команда профессионалов готова предложить вам услуги по маникюру, педикюру, стрижкам, окрашиванию волос и многому другому. Мы используем только качественные материалы и современные технологии, чтобы обеспечить вам лучший результат и комфорт во время процедур.</p></div></div></div>
 
 
-<div class="modal" id="modal-services" onclick="modalOutsideClick(event, 'services')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Наши услуги</h2><button class="modal-close" onclick="closeModal('services')">×</button></div><div class="services-grid"><div class="service-card"><h3>Стрижка и укладка</h3><p>Качественные стрижки и стильные укладки от наших мастеров.</p><div class="price">от 1500 руб.</div></div><div class="service-card"><h3>Маникюр и педикюр</h3><p>Услуги по уходу за ногтями для рук и ног.</p><div class="price">от 800 руб.</div></div><div class="service-card"><h3>Окрашивание волос</h3><p>Профессиональное окрашивание волос с использованием качественных красителей.</p><div class="price">от 2000 руб.</div></div><div class="service-card"><h3>Уходовые процедуры и SPA</h3><p>Расслабляющие SPA-процедуры для вашего тела и души.</p><div class="price">от 2500 руб.</div></div><div class="service-card"><h3>Массаж</h3><p>Разнообразные виды массажа для снятия напряжения и расслабления.</p><div class="price">от 1500 руб.</div></div></div></div></div>
+<div class="modal" id="modal-services" onclick="modalOutsideClick(event, 'services')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Наши услуги</h2><button class="modal-close" onclick="closeModal('services')">×</button></div><div class="services-grid"><div class="service-card"><h3>Стрижка и укладка</h3><p>Современные стрижки и укладки для любого типа волос.</p><div class="price">от 1500 руб.</div></div><div class="service-card"><h3>Маникюр и педикюр</h3><p>Эстетический уход за руками и ногами.</p><div class="price">от 800 руб.</div></div><div class="service-card"><h3>Окрашивание волос</h3><p>Комплексные процедуры по окрашиванию и уходу за волосами.</p><div class="price">от 2000 руб.</div></div><div class="service-card"><h3>Брови и ресницы</h3><p>Услуги по оформлению бровей и наращиванию ресниц.</p><div class="price">от 1000 руб.</div></div></div></div></div>
 
 
 
 
-<div class="modal" id="modal-testimonials" onclick="modalOutsideClick(event, 'testimonials')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Отзывы</h2><button class="modal-close" onclick="closeModal('testimonials')">×</button></div><div class="testimonials-grid"><div class="testimonial"><div class="stars">★★★★★</div><div class="text">«Отличный салон! Профессиональные мастера и уютная атмосфера.»</div><div class="author">— Анна Смирнова</div></div><div class="testimonial"><div class="stars">★★★★★</div><div class="text">«Мне очень понравился маникюр, буду приходить снова!»</div><div class="author">— Ирина Кузнецова</div></div><div class="testimonial"><div class="stars">★★★★★</div><div class="text">«Лучшее место для ухода за собой в Белорецке.»</div><div class="author">— Светлана Петрова</div></div></div></div></div>
+<div class="modal" id="modal-testimonials" onclick="modalOutsideClick(event, 'testimonials')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Отзывы</h2><button class="modal-close" onclick="closeModal('testimonials')">×</button></div><div class="testimonials-grid"><div class="testimonial"><div class="stars">★★★★★</div><div class="text">«В этом салоне делают потрясающие ресницы! Я очень довольна.»</div><div class="author">— Анна Петрова</div></div><div class="testimonial"><div class="stars">★★★★★</div><div class="text">«Лучший маникюр в городе! Обязательно вернусь.»</div><div class="author">— Мария Иванова</div></div><div class="testimonial"><div class="stars">★★★★☆</div><div class="text">«Профессиональные мастера и уютная атмосфера.»</div><div class="author">— Светлана Кузнецова</div></div></div></div></div>
 
 
-<div class="modal" id="modal-team" onclick="modalOutsideClick(event, 'team')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Наша команда</h2><button class="modal-close" onclick="closeModal('team')">×</button></div><div class="team-grid"><div class="team-member"><div class="avatar">М</div><h3>Мария Иванова</h3><div class="role">Парикмахер</div><p>Опытный парикмахер с большим опытом работы, специализирующийся на стрижках и укладках.</p></div><div class="team-member"><div class="avatar">Е</div><h3>Елена Петрова</h3><div class="role">Мастер маникюра</div><p>Профессиональный мастер маникюра и педикюра, создающий красивые и ухоженные ногти.</p></div><div class="team-member"><div class="avatar">С</div><h3>Светлана Васильева</h3><div class="role">Косметолог</div><p>Косметолог с опытом работы более 5 лет, предлагающая широкий спектр уходовых процедур.</p></div></div></div></div>
+<!-- Динамическая команда -->
+<div class="modal" id="modal-team" onclick="modalOutsideClick(event, 'team')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header"><h2>Наша команда</h2><button class="modal-close" onclick="closeModal('team')">×</button></div>
+        <div class="team-grid" id="teamGrid">
+            <p style="text-align:center; grid-column:1/-1;">Загрузка...</p>
+        </div>
+    </div>
+</div>
 
 
-<div class="modal" id="modal-faq" onclick="modalOutsideClick(event, 'faq')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Частые вопросы</h2><button class="modal-close" onclick="closeModal('faq')">×</button></div><div class="faq-list"><div class="faq-item"><h3>Какие услуги вы предоставляете?</h3><p>Мы предоставляем услуги стрижки, укладки, маникюра, педикюра, окрашивания волос и многое другое.</p></div><div class="faq-item"><h3>Как записаться на прием?</h3><p>Вы можете записаться на прием по телефону или через наш сайт.</p></div><div class="faq-item"><h3>Работаете ли вы по выходным?</h3><p>Да, мы работаем с понедельника по воскресенье с 10:00 до 20:00.</p></div></div></div></div>
+<div class="modal" id="modal-faq" onclick="modalOutsideClick(event, 'faq')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Частые вопросы</h2><button class="modal-close" onclick="closeModal('faq')">×</button></div><div class="faq-list"><div class="faq-item"><h3>Как записаться на услугу?</h3><p>Вы можете записаться по телефону или через сайт.</p></div><div class="faq-item"><h3>Какие услуги вы предлагаете?</h3><p>Мы предлагаем стрижки, укладки, маникюр, педикюр и многое другое.</p></div><div class="faq-item"><h3>Работаете ли вы по выходным?</h3><p>Да, мы работаем каждый день с 10:00 до 20:00.</p></div></div></div></div>
 
 
 <div class="modal" id="modal-contacts" onclick="modalOutsideClick(event, 'contacts')"><div class="modal-box" onclick="event.stopPropagation()"><div class="modal-header"><h2>Контакты</h2><button class="modal-close" onclick="closeModal('contacts')">×</button></div><div class="contacts-grid"><div class="contact-item"><div class="label">Компания</div><div class="value">Хочу ресницы</div></div><div class="contact-item"><div class="label">Адрес</div><div class="value">Белорецк, ул. Канатная 49</div></div><div class="contact-item"><div class="label">Телефон</div><div class="value">+7 996 101-56-01</div></div><div class="contact-item"><div class="label">Часы работы</div><div class="value">10:00-20:00</div></div></div></div></div>
@@ -182,27 +155,101 @@
     </div>
 </div>
 
-<div class="success-modal" id="successModal"><div class="modal-content"><h3>✅ Заявка отправлена!</h3><p>Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.</p><button onclick="closeSuccessModal()">Хорошо</button></div></div>
+<div class="success-modal" id="successModal"><div class="modal-content"><h3>✅ Заявка отправлена!</h3><p>Спасибо за вашу запись! Мы свяжемся с вами для подтверждения.</p><button onclick="closeSuccessModal()">Хорошо</button></div></div>
 
 <script>
     const SERVER_URL = "https://api.generator-beloretsk.ru";
     const SITE_ID = "qwe-qwe";
     const WORKING_HOURS = "10:00-20:00";
-    const TEAM = [{"description": "\u041e\u043f\u044b\u0442\u043d\u044b\u0439 \u043f\u0430\u0440\u0438\u043a\u043c\u0430\u0445\u0435\u0440 \u0441 \u0431\u043e\u043b\u044c\u0448\u0438\u043c \u043e\u043f\u044b\u0442\u043e\u043c \u0440\u0430\u0431\u043e\u0442\u044b, \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0437\u0438\u0440\u0443\u044e\u0449\u0438\u0439\u0441\u044f \u043d\u0430 \u0441\u0442\u0440\u0438\u0436\u043a\u0430\u0445 \u0438 \u0443\u043a\u043b\u0430\u0434\u043a\u0430\u0445.", "name": "\u041c\u0430\u0440\u0438\u044f \u0418\u0432\u0430\u043d\u043e\u0432\u0430", "role": "\u041f\u0430\u0440\u0438\u043a\u043c\u0430\u0445\u0435\u0440", "services": ["\u0421\u0442\u0440\u0438\u0436\u043a\u0430 \u0438 \u0443\u043a\u043b\u0430\u0434\u043a\u0430"]}, {"description": "\u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0439 \u043c\u0430\u0441\u0442\u0435\u0440 \u043c\u0430\u043d\u0438\u043a\u044e\u0440\u0430 \u0438 \u043f\u0435\u0434\u0438\u043a\u044e\u0440\u0430, \u0441\u043e\u0437\u0434\u0430\u044e\u0449\u0438\u0439 \u043a\u0440\u0430\u0441\u0438\u0432\u044b\u0435 \u0438 \u0443\u0445\u043e\u0436\u0435\u043d\u043d\u044b\u0435 \u043d\u043e\u0433\u0442\u0438.", "name": "\u0415\u043b\u0435\u043d\u0430 \u041f\u0435\u0442\u0440\u043e\u0432\u0430", "role": "\u041c\u0430\u0441\u0442\u0435\u0440 \u043c\u0430\u043d\u0438\u043a\u044e\u0440\u0430", "services": ["\u041c\u0430\u043d\u0438\u043a\u044e\u0440 \u0438 \u043f\u0435\u0434\u0438\u043a\u044e\u0440"]}, {"description": "\u041a\u043e\u0441\u043c\u0435\u0442\u043e\u043b\u043e\u0433 \u0441 \u043e\u043f\u044b\u0442\u043e\u043c \u0440\u0430\u0431\u043e\u0442\u044b \u0431\u043e\u043b\u0435\u0435 5 \u043b\u0435\u0442, \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u044e\u0449\u0430\u044f \u0448\u0438\u0440\u043e\u043a\u0438\u0439 \u0441\u043f\u0435\u043a\u0442\u0440 \u0443\u0445\u043e\u0434\u043e\u0432\u044b\u0445 \u043f\u0440\u043e\u0446\u0435\u0434\u0443\u0440.", "name": "\u0421\u0432\u0435\u0442\u043b\u0430\u043d\u0430 \u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432\u0430", "role": "\u041a\u043e\u0441\u043c\u0435\u0442\u043e\u043b\u043e\u0433", "services": ["\u041e\u043a\u0440\u0430\u0448\u0438\u0432\u0430\u043d\u0438\u0435 \u0432\u043e\u043b\u043e\u0441", "\u0423\u0445\u043e\u0434\u043e\u0432\u044b\u0435 \u043f\u0440\u043e\u0446\u0435\u0434\u0443\u0440\u044b \u0438 SPA", "\u041c\u0430\u0441\u0441\u0430\u0436"]}];
+    const STATIC_TEAM = [{"description": "\u041e\u043f\u044b\u0442\u043d\u044b\u0439 \u043f\u0430\u0440\u0438\u043a\u043c\u0430\u0445\u0435\u0440, \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0437\u0438\u0440\u0443\u044e\u0449\u0438\u0439\u0441\u044f \u043d\u0430 \u0441\u0442\u0440\u0438\u0436\u043a\u0430\u0445 \u0438 \u0443\u043a\u043b\u0430\u0434\u043a\u0430\u0445.", "name": "\u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0430 \u0421\u043c\u0438\u0440\u043d\u043e\u0432\u0430", "role": "\u041f\u0430\u0440\u0438\u043a\u043c\u0430\u0445\u0435\u0440", "services": ["\u0421\u0442\u0440\u0438\u0436\u043a\u0430 \u0438 \u0443\u043a\u043b\u0430\u0434\u043a\u0430", "\u041e\u043a\u0440\u0430\u0448\u0438\u0432\u0430\u043d\u0438\u0435 \u0432\u043e\u043b\u043e\u0441"]}, {"description": "\u041c\u0430\u0441\u0442\u0435\u0440\u0438\u0446\u0430 \u043c\u0430\u043d\u0438\u043a\u044e\u0440\u0430 \u0441 \u0432\u043d\u0438\u043c\u0430\u043d\u0438\u0435\u043c \u043a \u0434\u0435\u0442\u0430\u043b\u044f\u043c.", "name": "\u041e\u043b\u044c\u0433\u0430 \u0412\u0430\u0441\u0438\u043b\u044c\u0435\u0432\u0430", "role": "\u041c\u0430\u043d\u0438\u043a\u044e\u0440\u0438\u0441\u0442", "services": ["\u041c\u0430\u043d\u0438\u043a\u044e\u0440", "\u041f\u0435\u0434\u0438\u043a\u044e\u0440"]}, {"description": "\u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u043e\u043d\u0430\u043b \u0432 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u043e\u0444\u043e\u0440\u043c\u043b\u0435\u043d\u0438\u044f \u0431\u0440\u043e\u0432\u0435\u0439 \u0438 \u043d\u0430\u0440\u0430\u0449\u0438\u0432\u0430\u043d\u0438\u044f \u0440\u0435\u0441\u043d\u0438\u0446.", "name": "\u0410\u043b\u0435\u043a\u0441\u0435\u0439 \u041f\u043e\u043f\u043e\u0432", "role": "\u0421\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0441\u0442 \u043f\u043e \u0431\u0440\u043e\u0432\u044f\u043c \u0438 \u0440\u0435\u0441\u043d\u0438\u0446\u0430\u043c", "services": ["\u0411\u0440\u043e\u0432\u0438 \u0438 \u0440\u0435\u0441\u043d\u0438\u0446\u044b"]}];
 
     let currentMonth = new Date(); let selectedMaster = null; let selectedDate = null; let selectedTime = null; let busySlots = [];
     const monthYearEl = document.getElementById('monthYear'); const daysEl = document.getElementById('days'); const formEl = document.getElementById('bookingForm'); const selectedDateEl = document.getElementById('selectedDate'); const selectedTimeText = document.getElementById('selectedTimeText'); const successModal = document.getElementById('successModal'); const timeSlotsWrapper = document.getElementById('timeSlotsWrapper'); const timeSlotsEl = document.getElementById('timeSlots'); const masterSelectionEl = document.getElementById('masterSelection'); const stepMaster = document.getElementById('stepMaster'); const stepCalendar = document.getElementById('stepCalendar'); const serviceSelect = document.getElementById('service');
 
     function toggleSidebar() { const sidebar = document.getElementById('sidebar'); const overlay = document.getElementById('sidebarOverlay'); if (sidebar) sidebar.classList.toggle('open'); if (overlay) overlay.classList.toggle('open'); }
     function closeSidebar() { const sidebar = document.getElementById('sidebar'); const overlay = document.getElementById('sidebarOverlay'); if (sidebar) sidebar.classList.remove('open'); if (overlay) overlay.classList.remove('open'); }
-    function openModal(name) { const modal = document.getElementById('modal-' + name); if (!modal) return; modal.classList.add('open'); document.body.style.overflow = 'hidden'; closeSidebar(); if (name === 'booking') { resetBooking(); renderMasters(); } }
+    function openModal(name) { const modal = document.getElementById('modal-' + name); if (!modal) return; modal.classList.add('open'); document.body.style.overflow = 'hidden'; closeSidebar(); if (name === 'booking') { resetBooking(); renderMasters(); } if (name === 'team') { loadTeamToModal(); } }
     function closeModal(name) { const modal = document.getElementById('modal-' + name); if (!modal) return; modal.classList.remove('open'); document.body.style.overflow = ''; }
     function modalOutsideClick(event, name) { if (event.target.id === 'modal-' + name) closeModal(name); }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open')); document.body.style.overflow = ''; closeSidebar(); } });
 
-    function renderMasters() { masterSelectionEl.innerHTML = ''; if (!TEAM || TEAM.length === 0) { masterSelectionEl.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Мастера не указаны.</p>'; return; } TEAM.forEach(master => { const card = document.createElement('div'); card.className = 'master-card'; card.innerHTML = `<div class="master-avatar">${master.name ? master.name[0] : '?'}</div><h3>${master.name}</h3><div class="role">${master.role || ''}</div>`; card.onclick = async () => await selectMaster(master, card); masterSelectionEl.appendChild(card); }); }
+    async function loadTeamToModal() {
+        const teamGrid = document.getElementById('teamGrid');
+        if (!teamGrid) return;
+        try {
+            const res = await fetch(`${SERVER_URL}/api/masters/${SITE_ID}`);
+            const data = await res.json();
+            const masters = data.masters || [];
+            if (masters.length === 0) {
+                teamGrid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Пока нет добавленных мастеров.</p>';
+                return;
+            }
+            teamGrid.innerHTML = masters.map(m => `
+                <div class="team-member">
+                    <div class="avatar">${m.name ? m.name[0] : '?'}</div>
+                    <h3>${m.name}</h3>
+                    <div class="role">${m.role || ''}</div>
+                    <p>${m.description || ''}</p>
+                </div>
+            `).join('');
+        } catch (e) {
+            console.error("Ошибка загрузки команды", e);
+            teamGrid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Ошибка загрузки</p>';
+        }
+    }
 
-    async function selectMaster(master, card) { document.querySelectorAll('.master-card').forEach(c => c.classList.remove('selected')); card.classList.add('selected'); selectedMaster = master; serviceSelect.innerHTML = '<option value="">— Выберите услугу —</option>'; const services = master.services && master.services.length > 0 ? master.services : []; services.forEach(s => { const opt = document.createElement('option'); opt.value = s; opt.textContent = s; serviceSelect.appendChild(opt); }); stepMaster.style.display = 'none'; stepCalendar.style.display = 'block'; timeSlotsWrapper.style.display = 'none'; formEl.classList.remove('active'); await loadBusySlots(); renderCalendar(); }
+    async function renderMasters() {
+        if (!masterSelectionEl) {
+            console.error("Контейнер masterSelection не найден!");
+            return;
+        }
+        masterSelectionEl.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Загрузка мастеров...</p>';
+        try {
+            const res = await fetch(`${SERVER_URL}/api/masters/${SITE_ID}`);
+            const data = await res.json();
+            const currentTeam = data.masters && data.masters.length > 0 ? data.masters : STATIC_TEAM;
+            masterSelectionEl.innerHTML = '';
+            if (currentTeam.length === 0) {
+                masterSelectionEl.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Мастера не указаны.</p>';
+                return;
+            }
+            currentTeam.forEach(master => {
+                const card = document.createElement('div');
+                card.className = 'master-card';
+                card.innerHTML = `
+                    <div class="master-avatar">${master.name ? master.name[0] : '?'}</div>
+                    <h3>${master.name}</h3>
+                    <div class="role">${master.role || ''}</div>
+                `;
+                card.onclick = async () => await selectMaster(master, card);
+                masterSelectionEl.appendChild(card);
+            });
+        } catch (e) {
+            console.error("Ошибка загрузки мастеров", e);
+            masterSelectionEl.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Ошибка загрузки мастеров</p>';
+        }
+    }
+
+    async function selectMaster(master, card) {
+        document.querySelectorAll('.master-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedMaster = master;
+        serviceSelect.innerHTML = '<option value="">— Выберите услугу —</option>';
+        const services = master.services && master.services.length > 0 ? master.services : [];
+        services.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s;
+            opt.textContent = s;
+            serviceSelect.appendChild(opt);
+        });
+        stepMaster.style.display = 'none';
+        stepCalendar.style.display = 'block';
+        timeSlotsWrapper.style.display = 'none';
+        formEl.classList.remove('active');
+        await loadBusySlots();
+        renderCalendar();
+    }
+
     async function loadBusySlots() { try { const res = await fetch(`${SERVER_URL}/api/busy/${SITE_ID}`); const data = await res.json(); busySlots = data.busy || []; } catch (e) { console.error('Не удалось загрузить занятые слоты', e); busySlots = []; } }
     function isSlotBusy(date, time) { if (!selectedMaster) return false; return busySlots.some(b => b.date === date && b.time === time && b.master === selectedMaster.name); }
 
